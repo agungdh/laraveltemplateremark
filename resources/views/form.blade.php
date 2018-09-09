@@ -1,4 +1,4 @@
-@extends('template')
+@extends('layouts.template')
 
 @section('nav')
 <li class="breadcrumb-item"><a href="../index.html">Home</a></li>

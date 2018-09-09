@@ -1,9 +1,7 @@
-@extends('layouts.template')
+@extends('template')
 
 @section('nav')
-<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-<li class="breadcrumb-item"><a href="javascript:void(0)">Tables</a></li>
-<li class="breadcrumb-item active">DataTables</li>
+@include('user.nav')
 @endsection
 
 @section('content')
@@ -17,118 +15,23 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Position</th>
-          <th>Office</th>
-          <th>Age</th>
-          <th>Date</th>
-          <th>Salary</th>
-          <th>Salary</th>
-          <th>Salary</th>
-          <th>Salary</th>
-          <th>Salary</th>
-          <th>Salary</th>
-          <th>Salary</th>
+          <th>Email</th>
+          <th>Proses</th>
         </tr>
       </thead>
       <tbody>
+        @foreach($users as $user)
         <tr>
-          <td>Damon</td>
-          <td>5516 Adolfo Green</td>
-          <td>Littelhaven</td>
-          <td>85</td>
-          <td>2014/06/13</td>
-          <td>$553,536</td>
-          <td>$553,536</td>
-          <td>$553,536</td>
-          <td>$553,536</td>
-          <td>$553,536</td>
-          <td>$553,536</td>
-          <td>$553,536</td>
+          <td>{{ $user->name }}</td>
+          <td>{{ $user->email }}</td>
+          <td>
+            <a href="{{ route('user.edit', $user->id) }}">Edit</a>
+            {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'delete']) !!}
+            <button type="submit">Hapus</button>
+            {!! Form::close() !!}
+          </td>
         </tr>
-        <tr>
-          <td>Torrey</td>
-          <td>1995 Richie Neck</td>
-          <td>West Sedrickstad</td>
-          <td>77</td>
-          <td>2014/09/12</td>
-          <td>$243,577</td>
-          <td>$243,577</td>
-          <td>$243,577</td>
-          <td>$243,577</td>
-          <td>$243,577</td>
-          <td>$243,577</td>
-          <td>$243,577</td>
-        </tr>
-        <tr>
-          <td>Miracle</td>
-          <td>176 Hirthe Squares</td>
-          <td>Ryleetown</td>
-          <td>82</td>
-          <td>2013/09/27</td>
-          <td>$784,802</td>
-          <td>$784,802</td>
-          <td>$784,802</td>
-          <td>$784,802</td>
-          <td>$784,802</td>
-          <td>$784,802</td>
-          <td>$784,802</td>
-        </tr>
-        <tr>
-          <td>Wilhelmine</td>
-          <td>44727 O&#x27;Hara Union</td>
-          <td>Dibbertfurt</td>
-          <td>68</td>
-          <td>2013/06/28</td>
-          <td>$207,291</td>
-          <td>$207,291</td>
-          <td>$207,291</td>
-          <td>$207,291</td>
-          <td>$207,291</td>
-          <td>$207,291</td>
-          <td>$207,291</td>
-        </tr>
-        <tr>
-          <td>Hubert</td>
-          <td>8884 Jamel Pines</td>
-          <td>Howemouth</td>
-          <td>63</td>
-          <td>2013/05/28</td>
-          <td>$584,032</td>
-          <td>$584,032</td>
-          <td>$584,032</td>
-          <td>$584,032</td>
-          <td>$584,032</td>
-          <td>$584,032</td>
-          <td>$584,032</td>
-        </tr>
-        <tr>
-          <td>Monique_White</td>
-          <td>415 Corkery Walks</td>
-          <td>West Lauryn</td>
-          <td>97</td>
-          <td>2014/02/11</td>
-          <td>$222,343</td>
-          <td>$222,343</td>
-          <td>$222,343</td>
-          <td>$222,343</td>
-          <td>$222,343</td>
-          <td>$222,343</td>
-          <td>$222,343</td>
-        </tr>
-        <tr>
-          <td>Jarvis.Simonis</td>
-          <td>0778 Elvis Spurs</td>
-          <td>Harrisfurt</td>
-          <td>62</td>
-          <td>2013/05/28</td>
-          <td>$336,046</td>
-          <td>$336,046</td>
-          <td>$336,046</td>
-          <td>$336,046</td>
-          <td>$336,046</td>
-          <td>$336,046</td>
-          <td>$336,046</td>
-        </tr>
+        @endforeach
       </tbody>
     </table>
   </div>

@@ -13,7 +13,11 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('auth');
+
+Route::get('/login', 'LoginController@index');
+Route::post('/login', 'LoginController@login')->name('login');
+Route::get('/logout', 'LoginController@logout')->name('logout');
 
 Route::get('/table', function () {
     return view('table');
@@ -22,3 +26,15 @@ Route::get('/table', function () {
 Route::get('/form', function () {
     return view('form');
 });
+
+// Route::get('/logins', function () {
+//     return view('logins');
+// });
+
+// Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resources([
+	'/user' => 'UserController'
+]);
